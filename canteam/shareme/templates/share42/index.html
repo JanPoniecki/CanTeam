@@ -1,0 +1,37 @@
+{% extends 'share42/base.html' %}
+{% block content %}
+<center>
+  <hr>
+  <div class="container">
+    <a class="btn btn-lg btn-outline-success" href="{% url 'prod_cat' u.name %}"> Buy smth. <br> <i class="bi bi-cart3"></i></a>
+    <a class="btn btn-lg btn-outline-primary" href="{% url 'top_up' u.name %}">Pay debts <br> <i class="bi bi-piggy-bank"></i> </a><br><br>
+    <a class="btn btn-outline-secondary" href="{% url 'add_prod' u.name %}">+ add a product +</a>
+    <a class="btn btn-outline-danger" href="{% url 'receivables' u.name %}">receivables</a>
+  </div>
+  <hr>
+
+  <div class="accordion" id="leaderboard">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <h4>leaderboard</h4>
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#leaderboard">
+        <div class="accordion-body">
+          <table class="table">
+            <tr>
+              <th>user</th><th>coffee_score</th>
+            </tr>
+            {% for u in us %}
+              <tr class="{{u.color}}">
+                  <td class="{{u.color}}">{{u.name}}</td><td class="{{u.color}}">{{u.coffee_score}}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</center>
+{% endblock %}

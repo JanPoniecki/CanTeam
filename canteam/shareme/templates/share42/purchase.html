@@ -1,0 +1,35 @@
+{% extends 'share42/base.html' %}
+{% block content %}
+<center>
+    <hr>
+    <h4>Fill a form to buy {{p.name}}</h4>
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <label for="q_input">how many {{p.unit}}s did you take?</label>
+            <input type="number" class="form-control form-control-lg" value="1" id="q_input" name="qnt" style="text-align: center;">
+            <div class="row m-2">
+                <div class="col-1"></div>
+                <div class="col col-4 btn btn-warning btn-lg" onclick="increase(-1)">-</div>
+                <div class="col-2"></div>
+                <div class="col col-4 btn btn-success btn-lg" onclick="increase(1)">+</div>
+                <div class="col-1"></div>
+            </div>
+            <button class="btn btn-outline-success btn-lg m-3 rounded rounded-pill border border-5 border-info">click here to buy!</button>
+        </form>
+    </div>
+    <script>
+        function increase(x)
+        {
+            value = $("#q_input").val()
+            value = parseInt(value)
+            value += x
+            if (value < 0)
+            {
+                value = 0
+            }
+            $("#q_input").val(value)
+        }
+    </script>
+</center>
+{% endblock %}

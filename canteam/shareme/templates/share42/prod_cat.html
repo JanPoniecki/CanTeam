@@ -1,0 +1,18 @@
+{% extends 'share42/base.html' %}
+{% block content %}
+<center>
+    <hr>
+    <h4>Please select a product</h4>
+    <div class="container">
+        {% for p in ps %}
+            <a style="text-decoration: none; color: black;" href="{% url 'purchase' p.pk u.name %}"> 
+            <div class="alert alert-warning rounded-pill border border-4 border-warning">
+                {{p.name}}
+                <hr>
+                {{p.price}} PLN / {{p.unit}}
+            </div>
+            </a>
+        {% endfor %}
+    </div>
+</center>
+{% endblock %}

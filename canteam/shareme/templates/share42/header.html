@@ -1,0 +1,14 @@
+<center>
+    {% if u %}
+    <a href="{% url '42_index' u.name %}" style="text-decoration: none; color: black;">
+    {% else %}
+    <a href="{% url '42_home' %}" style="text-decoration: none; color: black;">
+    {% endif %}
+        <div class="alert alert-info">
+        <h2 class="m-2" > <i class="bi bi-cup-hot"></i> &nbsp CanTeam &nbsp <i class="bi bi-cup-hot"></i> </h2>
+        </div>
+    </a>
+    {% if u %}
+        <p>logged as {{u.name}} &nbsp&nbsp <a href="{% url '42_home' %}">log out</a></p>
+    {% endif %}
+</center>

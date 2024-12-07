@@ -1,0 +1,15 @@
+{% extends 'share42/base.html' %}
+{% block content %}
+<center>
+    <div class="container m-1">
+    <h3>Time to set a strong password</h3>
+    <small>your password has to be at least one char. long</small>
+    <form method="POST" action="{% url 'save_pwd' %}">
+        {% csrf_token %}
+        <input type="hidden" name="u_name" value="{{user}}">
+        <input class="form-control form-control-lg m-2" type="text" name="pwd">
+        <button class="btn btn-lg btn-outline-danger">Save my Password</button>
+    </form>
+    </div>
+</center>
+{% endblock %}

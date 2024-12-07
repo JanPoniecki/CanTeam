@@ -1,0 +1,72 @@
+{% extends 'share42/base.html' %}
+{% block content %}
+<center>
+    <h4>People who owe you</h4>
+    <!-- <div class="alert alert-warning">if someone has just paid you write a message on slack (to <b>jponieck</b>) or
+send a text message to <b>693856096</b> with 
+<br><u> "[user who paid] [amount paid] [user who recived]" </u><br> 
+Receivables will be updated as soon as possible</div> -->
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>user</th><th>debt</th><th></th>
+            </tr>
+            {% for r in rs %}
+                {% if r.debt != 0 %}
+                    <tr class="m-1">
+                        <td>{{r.name}}</td><td>{{r.debt}}</td>
+                        <td onclick="set_paid('{{r.name}}')" class="btn btn-outline-success">confirm payment</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+        <div class="alert alert-success">end of list, no more people owe you</div>
+    </div>
+</center>
+
+  <!-- Button trigger modal -->
+  <button type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#exampleModal" id="show_modal_button">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title fs-5" id="exampleModalLabel">Payment Received</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+            <p>How much <span id="user_span"></span> has just paid you?</p>
+            <small>every currency is accepted (cash, BLIK, smile, etc. )</small>
+                {% csrf_token %}
+                <input type="decimal-input" name="amount" class="form-control" placeholder="amount paid">
+                <input type="text" class="form-control" id="pwd" placeholder="input your password">
+                <input type="hidden" name="u_name" id="user_name_input">
+            </div>
+            <div class="modal-footer">
+                <input type="submit" class="btn btn-primary" value="Save Payment" disabled id="submit_button">
+            </div>
+        </form> 
+      </div>
+    </div>
+  </div>
+
+<script>
+    function set_paid(user_name)
+    {
+        $('#show_modal_button').click()
+        $('#user_span').text(user_name)
+        $('#user_name_input').val(user_name)
+    }
+    $('#pwd').change(function(){
+        if ($('#pwd').val() == '{{u.pwd}}')
+        {
+            $('#submit_button').prop('disabled', false)
+        }
+    })
+</script>
+{% endblock %}

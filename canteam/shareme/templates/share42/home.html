@@ -1,0 +1,49 @@
+{% extends 'share42/base.html' %}
+{% block content %}
+<center>
+    <div class="container m-1">
+    <h3>Welcome to CanTeam</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" class="form-control form-control-lg mb-2" name="user42" style="text-align: center;" \
+         placeholder="enter your intra login" required autofocus id="login_input">
+        <label>pick your color</label><br>
+        <div class="row">
+            <div type="button" class="cc col m-1 p-2 rounded border border-3" style="background-color: #c0392b">R</div>
+            <div type="button" class="cc col m-1 p-2 rounded border border-3" style="background-color: #9b59b6">P</div>
+            <div type="button" class="cc col m-1 p-2 rounded border border-3" style="background-color: #2980b9">B</div>
+            <div type="button" class="cc col m-1 p-2 rounded border border-3" style="background-color: #27ae60">G</div>
+            <div type="button" class="cc col m-1 p-2 rounded border border-3" style="background-color: #f1c40f">Y</div>
+            <div type="button" class="cc col m-1 p-2 rounded border border-3" style="background-color: #d35400">O</div>
+            <div type="button" class="cc col m-1 p-2 rounded border border-3" style="background-color: #273746">A</div>
+        </div>
+        <div class="btn btn-outline-success btn-lg m-3 rounded rounded-pill border border-5 border-info" \ 
+        onclick="check_input()">continue</div>
+        <input type="hidden" value="none" id="coalition" name="coal">
+    </form>
+    </div>
+</center>
+<script>
+    $(".cc").click(function()
+    {
+        $(".cc").removeClass("border-dark")
+        $(this).addClass("border-dark")
+        $("#coalition").val($(this).text())
+    })
+    function check_input()
+    {
+        if ($("#coalition").val() == "none")
+        {
+            alert("please select your coalition")
+        }
+	if (!$('#login_input').val())
+	{
+            alert("login input must not be empty")
+	}
+        else
+        {
+            $("form").submit()
+        }
+    }
+</script>
+{% endblock %}

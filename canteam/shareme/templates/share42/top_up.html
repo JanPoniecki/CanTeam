@@ -1,0 +1,64 @@
+{% extends 'share42/base.html' %}
+{% block content %}
+<center>
+    <h4>{{u}}'s balance</h4>
+    {% if user.balance == 0 %}
+        <div class="alert alert-success">all done, nothing to pay !</div>
+    {% endif %}
+    <div class="alert alert-warning">Please use BLIK to pay for your orders</div>
+    <div class="alert alert-success">you don't have to pay every small amount, wait until your debt is 5 PLN or so</div>
+    
+    <div class="container">
+        <h5>people you owe:</h5>
+        {% for s in sponsors %}
+      {% if s.total != 0 %}
+      <div class="container border border-2 m-2">
+ 
+            <div class="data container p-2 row">
+                <div class="col"><i class="bi bi-person-arms-up"></i></div>
+                <div class="col">
+                    <span>{{s.user42.name}}</span>
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-secondary"><i class="bi bi-clipboard"></i></button>
+                </div>
+            </div>
+
+            <div class="data container p-2 row">
+                <div class="col"><i class="bi bi-phone"></i></div>
+                <div class="col">
+                    <span>{{s.phone}}</span>
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-secondary"><i class="bi bi-clipboard"></i></button>
+                </div>
+            </div>
+
+            <div class="data container p-2 row">
+                <div class="col"><i class="bi bi-cash-coin"></i></div>
+                <div class="col">
+                    <span>{{s.total}}</span>
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-secondary"><i class="bi bi-clipboard"></i></button>
+                </div>
+            </div>
+        </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div class="alert alert-danger">Any amount above debt will be considered a tip, we don't handle overpayments yet</div>
+</center>
+<script>
+    $(".btn-outline-secondary").click(function()
+    {
+        parent = $(this).parents(".data")
+        txt = $(parent).find("span").text()
+        var tempElement = $("<textarea>")
+        $("body").append(tempElement)
+        tempElement.val(txt).select()
+        document.execCommand("copy")
+        tempElement.remove()
+    })
+</script>
+{% endblock %}
