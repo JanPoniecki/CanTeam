@@ -9,6 +9,6 @@
         </div>
     </a>
     {% if u %}
-        <p>logged as {{u.name}} &nbsp&nbsp <a href="{% url '42_home' %}">log out</a></p>
+        <p>logged as  {{u.icon | safe}} {{u.name}} &nbsp&nbsp <a href="{% url '42_home' %}">log out</a></p>
     {% endif %}
 </center>

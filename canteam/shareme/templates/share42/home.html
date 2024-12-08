@@ -6,8 +6,8 @@
     <form method="POST">
         {% csrf_token %}
         <input type="text" class="form-control form-control-lg mb-2" name="user42" style="text-align: center;" \
-         placeholder="enter your intra login" required autofocus id="login_input">
-        <label>pick your color</label><br>
+         placeholder="enter your login" required autofocus id="login_input">
+        <label>pick your color ...</label><br>
         <div class="row">
             <div type="button" class="cc col m-1 p-2 rounded border border-3" style="background-color: #c0392b">R</div>
             <div type="button" class="cc col m-1 p-2 rounded border border-3" style="background-color: #9b59b6">P</div>
@@ -17,9 +17,20 @@
             <div type="button" class="cc col m-1 p-2 rounded border border-3" style="background-color: #d35400">O</div>
             <div type="button" class="cc col m-1 p-2 rounded border border-3" style="background-color: #273746">A</div>
         </div>
+        <label>... and your icon</label><br>
+        <div class="row">
+            <div type="button" class="ii col m-1 p-2 rounded border border-3"><i class="bi bi-airplane"></i></div>
+            <div type="button" class="ii col m-1 p-2 rounded border border-3"><i class="bi bi-balloon"></i></div>
+            <div type="button" class="ii col m-1 p-2 rounded border border-3"><i class="bi bi-bicycle"></i></div>
+            <div type="button" class="ii col m-1 p-2 rounded border border-3"><i class="bi bi-bug"></i></div>
+            <div type="button" class="ii col m-1 p-2 rounded border border-3"><i class="bi bi-camera"></i></div>
+            <div type="button" class="ii col m-1 p-2 rounded border border-3"><i class="bi bi-cassette"></i></div>
+            <div type="button" class="ii col m-1 p-2 rounded border border-3"><i class="bi bi-cloud-drizzle"></i></div>
+        </div>
         <div class="btn btn-outline-success btn-lg m-3 rounded rounded-pill border border-5 border-info" \ 
         onclick="check_input()">continue</div>
         <input type="hidden" value="none" id="coalition" name="coal">
+        <input type="hidden" value="none" id="icon_id" name="icon">
     </form>
     </div>
 </center>
@@ -30,16 +41,18 @@
         $(this).addClass("border-dark")
         $("#coalition").val($(this).text())
     })
+    $(".ii").click(function()
+    {
+        $(".ii").removeClass("border-dark")
+        $(this).addClass("border-dark")
+        $("#icon_id").val($(this).html())
+    })
     function check_input()
     {
-        if ($("#coalition").val() == "none")
+        if (!$('#login_input').val())
         {
-            alert("please select your coalition")
+                alert("login input must not be empty")
         }
-	if (!$('#login_input').val())
-	{
-            alert("login input must not be empty")
-	}
         else
         {
             $("form").submit()

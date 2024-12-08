@@ -8,19 +8,20 @@ import random
 
 def select_color_by_coal(coal):
 	if coal == "R":
-		return "table-R"
+		return "#c0392b"
 	if coal == "P":
-		return "table-P"
+		return "#9b59b6"
 	if coal == "B":
-		return "table-B"
+		return "#2980b9"
 	if coal == "G":
-		return "table-G"
+		return "#27ae60"
 	if coal == "Y":
-		return "table-Y"
+		return "#f1c40f"
 	if coal == "O":
-		return "table-O"
+		return "#d35400"
 	else:
 		return "table-secondary"
+
 
 def update_balance(u):
 	purchases = Action.objects.filter(is_order=True, user42=u)
@@ -38,17 +39,51 @@ def save_pwd(request):
 		return redirect('42_index', u.name)
 	return redirect('home')
 
+def check_or_choose_coal(u_name):
+	u = User42.objects.filter(name = u_name).first()
+	lista = ["R", "P", "B", "G", "Y", "O"]
+	if not u or not u.color:
+		return random.choice(lista)
+	else:
+		return u.color
+
+def check_or_choose_icon(u_name):
+	u = User42.objects.filter(name = u_name).first()
+	lista = [
+		'<i class="bi bi-airplane"></i>', 
+		'<i class="bi bi-balloon"></i>', 
+		'<i class="bi bi-bicycle"></i>',
+		'<i class="bi bi-bug"></i>', 
+		'<i class="bi bi-camera"></i>', 
+		'<i class="bi bi-cassette">',
+		'<i class="bi bi-cloud-drizzle"></i>'
+		]
+	if not u or not u.icon:
+		return random.choice(lista)
+	else:
+		icon = u.icon.split('<i')[1].split('</i>')[0]
+		return f"<i{icon}</i>"
+
 def home(request):
 	context = {}
 	if request.method == 'POST':
 		u_name = request.POST['user42'].lower().strip()
 		coal = request.POST['coal']
+		if coal == 'none':
+			coal = check_or_choose_coal(u_name)
+			print(coal)
+		icon = request.POST['icon']
+		if icon == 'none':
+			icon = check_or_choose_icon(u_name)
+			print(icon)
 		u = User42.objects.filter(name = u_name).first()
 		if not u:
 			u = User42.objects.create(name=u_name)
 		context['user'] = u.name
 		u.coalition = coal
-		u.color = select_color_by_coal(coal)
+		u.color = coal
+		# u.color = select_color_by_coal(coal)
+		u.icon = f'<b style="color: {select_color_by_coal(coal)}; font-size: 14pt">{icon}</b>'
 		u.save()
 		if not u.pwd:
 			return render(request, 'share42/set_pwd.html', context=context)
@@ -113,10 +148,13 @@ def add_prod(request, username):
 		if not s:
 			s = Sponsor.objects.create(user42=u)
 		s.phone = request.POST['phone']
+		u.phone = s.phone
+		u.save()
 		p = Product.objects.create(
 			name = request.POST['product'],
 			price = request.POST['price_per_unit'],
 			unit = request.POST['unit'],
+			color = request.POST['color'],
 			sponsor = s
 		)
 		s.save()

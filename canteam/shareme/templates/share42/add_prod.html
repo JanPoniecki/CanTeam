@@ -6,15 +6,20 @@
     <p class="alert alert-success m-2">please fill up form below</p>
     <form method="POST">
         {% csrf_token %}
+        {% if u.phone %}
+        <input type="text" name="phone" placeholder="your phone number" id="phn" required class="form-control" value="{{u.phone}}">
+        {% else %}
         <input type="text" name="phone" placeholder="your phone number" id="phn" required class="form-control">
+        {% endif %}
         <label for="phn" class="form-label">phone nr is necessary to get paid</label>
         <input type="text" name="product" placeholder="name you product" required class="form-control">
         <input type="text" name="unit" placeholder="unit (spoon, piece, scoop...)" required class="form-control"> 
         <input type="number" placeholder="total portions" required class="form-control" id="total_p">
         <input type="decimal-input" placeholder="price" required class="form-control" id="price_i">
         <input type="decimal-input" name="price_per_unit" class="form-control" placeholder="price per unit" id="unit_price">
-        <input type="hidden" name="coalition" id="cltn">
-        <button class="btn btn-lg btn-outline-success">Share it!</button> 
+        <input type="hidden" name="color" id="cltn">
+        <input type="color" class="form-control form-control-color"  value="#563d7c" name="color">
+        <button class="btn btn-lg btn-outline-success">Share it!</button>
     </form>
 </div>
 <script>

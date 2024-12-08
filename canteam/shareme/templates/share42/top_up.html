@@ -6,7 +6,7 @@
         <div class="alert alert-success">all done, nothing to pay !</div>
     {% endif %}
     <div class="alert alert-warning">Please use BLIK to pay for your orders</div>
-    <div class="alert alert-success">you don't have to pay every small amount, wait until your debt is 5 PLN or so</div>
+    <!-- <div class="alert alert-success">you don't have to pay every small amount, wait until your debt is 5 PLN or so</div> -->
     
     <div class="container">
         <h5>people you owe:</h5>
@@ -15,7 +15,7 @@
       <div class="container border border-2 m-2">
  
             <div class="data container p-2 row">
-                <div class="col"><i class="bi bi-person-arms-up"></i></div>
+                <div class="col">{{s.user42.icon|safe}}</div>
                 <div class="col">
                     <span>{{s.user42.name}}</span>
                 </div>

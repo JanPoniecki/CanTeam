@@ -4,9 +4,10 @@ class User42(models.Model):
     name = models.CharField(max_length=20)
     balance = models.FloatField(default=0)
     coffee_score = models.IntegerField(default=0)
-    color = models.CharField(max_length=7, default='#b8b8b8')
     color = models.CharField(max_length=20, blank=True, null=True)
     pwd = models.CharField(max_length=50, blank=True, null=True)
+    icon = models.CharField(max_length=200, blank=True, null=True)
+    phone = models.CharField(max_length=200, blank=True, null=True)
     def __str__(self):
         return self.name
 

@@ -21,11 +21,11 @@
         <div class="accordion-body">
           <table class="table">
             <tr>
-              <th>user</th><th>coffee_score</th>
+              <th></th><th>user</th><th>coffee_score</th>
             </tr>
             {% for u in us %}
               <tr class="{{u.color}}">
-                  <td class="{{u.color}}">{{u.name}}</td><td class="{{u.color}}">{{u.coffee_score}}</td>
+                  <td>{{u.icon | safe}}</td><td class="{{u.color}}">{{u.name}}</td><td class="{{u.color}}">{{u.coffee_score}}</td>
               </tr>
             {% endfor %}
           </table>

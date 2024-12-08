@@ -7,13 +7,15 @@ send a text message to <b>693856096</b> with
 <br><u> "[user who paid] [amount paid] [user who recived]" </u><br> 
 Receivables will be updated as soon as possible</div> -->
     <div class="container">
+        {% if rs|length > 0 %}
         <table class="table">
             <tr>
-                <th>user</th><th>debt</th><th></th>
+                <th></th><th>user</th><th>debt</th><th></th>
             </tr>
             {% for r in rs %}
                 {% if r.debt != 0 %}
                     <tr class="m-1">
+                        <td>{{r.icon | safe}}</td>
                         <td>{{r.name}}</td><td>{{r.debt}}</td>
                         <td onclick="set_paid('{{r.name}}')" class="btn btn-outline-success">confirm payment</td>
                     </tr>
@@ -21,6 +23,9 @@ Receivables will be updated as soon as possible</div> -->
             {% endfor %}
         </table>
         <div class="alert alert-success">end of list, no more people owe you</div>
+        {% else %}
+        <div class="alert alert-success"> <i class="bi bi-hand-thumbs-up"></i> nobody owes you <i class="bi bi-hand-thumbs-up"></i> </div>
+        {% endif %}
     </div>
 </center>
 
@@ -41,7 +46,6 @@ Receivables will be updated as soon as possible</div> -->
             {% csrf_token %}
             <div class="modal-body">
             <p>How much <span id="user_span"></span> has just paid you?</p>
-            <small>every currency is accepted (cash, BLIK, smile, etc. )</small>
                 {% csrf_token %}
                 <input type="decimal-input" name="amount" class="form-control" placeholder="amount paid">
                 <input type="text" class="form-control" id="pwd" placeholder="input your password">
