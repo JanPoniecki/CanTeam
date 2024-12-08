@@ -3,6 +3,7 @@ import shutil
 import subprocess
 import sys
 import socket
+import qrcode_terminal
 
 def check_python():
     """Sprawdza, czy Python jest zainstalowany i dostępny w PATH."""
@@ -44,6 +45,8 @@ def run_django_server():
     local_ip = get_local_ip()
     try:
         print(f"Uruchamianie serwera Django na http://{local_ip}:8000...")
+        data = f"http://{local_ip}:8000"
+        qrcode_terminal.draw(data)
         subprocess.check_call([sys.executable, "canteam/manage.py", "runserver", f"{local_ip}:8000"])
     except FileNotFoundError:
         print("Nie znaleziono pliku manage.py. Upewnij się, że skrypt jest uruchamiany w katalogu projektu Django.")
