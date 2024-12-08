@@ -1,3 +1,48 @@
+# CanTeam: A Food Sharing Application 🍵
+
+**CanTeam** is an innovative solution for food sharing in shared kitchens. The name combines "cantine" (French for cafeteria) and "team" to highlight its focus on teamwork and shared responsibility. 
+
+Whether it's coffee, tea, sugar, or creamer, CanTeam ensures fair usage and reimbursement among people sharing resources in communal spaces. 
+
+---
+
+## 🌟 Features
+
+- **Track Shared Products**  
+  Users can add products to the app by specifying the name, unit (e.g., teabags, teaspoons), and total cost. CanTeam calculates the price per unit for easy tracking.  
+
+- **Sponsor System**  
+  The user who adds a product becomes its sponsor, marking their contribution to the shared resources.
+
+- **Usage Logging**  
+  Other users can record how much of the product they’ve used. For instance, if someone takes two teabags, they can log it in the app.
+
+- **Expense Reconciliation**  
+  CanTeam keeps a detailed record of product usage and sponsorship. It calculates how much money each person owes to others, enabling easy monthly reimbursements.
+
+- **Local Network Functionality**  
+  The app operates over local Wi-Fi, making it perfect for small offices, coworking spaces, or shared apartments.
+
+- **Mobile-First Design**  
+  Designed with mobile devices in mind, CanTeam ensures a seamless user experience on the go.
+
+---
+
+## 🚀 Getting Started
+
+Follow these simple steps to set up and start using CanTeam:
+
+### Prerequisites
+- **Python**: Ensure Python is installed on your system.
+
+### Installation and Setup
+1. **Clone the Repository**  
+   Download or clone this repository to your local machine:
+   ```bash
+   git clone https://github.com/yourusername/canteam.git
+   cd canteam
+
+
 
 CanTeam: A Food Sharing Application 🍵
 CanTeam is an innovative solution for food sharing in shared kitchens. The name combines "cantine" (French for cafeteria) and "team" to highlight its focus on teamwork and shared responsibility.
