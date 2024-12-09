@@ -39,7 +39,7 @@ Follow these simple steps to set up and start using CanTeam:
 1. **Clone the Repository**  
    Download or clone this repository to your local machine:
    ```bash
-   git clone https://github.com/JanPoniecki/canteame.git
+   git clone https://github.com/JanPoniecki/canteam.git
    cd canteam
 
 2. **Run the Installer**
@@ -58,30 +58,31 @@ Follow these simple steps to set up and start using CanTeam:
 
 - Example: You buy a box of 100 teabags for $10.
 - Add the product with details:
--- Name: Tea
--- Unit: Bag
--- Total Cost: $10
+  - Name: Tea
+  - Unit: Bag
+  - Total Cost: $10
 - CanTeam calculates the price per unit: $0.10 per bag.
 2. Logging Usage
 
-Other users can log how many units they’ve consumed. For instance:
-John logs 5 bags.
-Mary logs 3 bags.
-Reimbursement Calculation
-
-CanTeam keeps track of all contributions and usage. At the end of the month (or any preferred period), users can settle expenses based on the app’s calculations.
-🎯 Use Cases
-Office Kitchens
-Perfect for managing shared supplies like coffee, sugar, and tea.
-Shared Apartments
-Simplify the distribution of costs for groceries and other communal items.
-Coworking Spaces
-Promote fairness and accountability in resource sharing.
+- Other users can log how many units they’ve consumed. For instance:
+  - John logs 5 bags.
+  -  Mary logs 3 bags.
+3. Reimbursement Calculation
+- CanTeam keeps track of all contributions and usage. At the end of the month (or any preferred period), users can settle expenses based on the app’s calculations.
+## 🎯 Use Cases
+- **Office Kitchens**  
+  Perfect for managing shared supplies like coffee, sugar, and tea.
+- **Shared Apartments**  
+  Simplify the distribution of costs for groceries and other communal items.
+- **Coworking Spaces**  
+  Promote fairness and accountability in resource sharing.
 📱 Accessibility
 Since CanTeam operates on local Wi-Fi, it doesn’t require an internet connection. Everyone connected to the same Wi-Fi network can use the app seamlessly.
 
-🧩 Contributing
+## 🧩 Contributing
 Contributions are welcome! Feel free to fork this repository and submit a pull request with your improvements or ideas.
 
-📃 License
+## 📃 License
 This project is licensed under the MIT License. See the LICENSE file for more details.
+##
+Ready to share fairly? Try CanTeam today! 🍵
