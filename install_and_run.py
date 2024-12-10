@@ -3,7 +3,6 @@ import shutil
 import subprocess
 import sys
 import socket
-import qrcode_terminal
 
 def check_python():
     """Sprawdza, czy Python jest zainstalowany i dostępny w PATH."""
@@ -33,8 +32,10 @@ def install_requirements():
 def get_local_ip():
     """Pobiera lokalny adres IP komputera."""
     try:
-        hostname = socket.gethostname()
-        local_ip = socket.gethostbyname(hostname)
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+            # Łączymy się z zewnętrznym adresem (ale połączenie nie jest nawiązane)
+            s.connect(("8.8.8.8", 80))
+            local_ip = s.getsockname()[0]
         return local_ip
     except Exception as e:
         print(f"Błąd przy pobieraniu adresu IP: {e}")
@@ -59,5 +60,6 @@ if __name__ == "__main__":
     
     if not install_requirements():
         sys.exit(1)
-    
+
+    import qrcode_terminal
     run_django_server()
