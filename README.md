@@ -1,6 +1,6 @@
 # CanTeam: A Food Sharing Application 🍵
 
-**CanTeam** is an innovative solution for food sharing in shared kitchens. The name combines "cantine" (French for cafeteria) and "team" to highlight its focus on teamwork and shared responsibility. 
+**CanTeam** is an innovative solution for food sharing in shared kitchens. The name combines "canteen" (English for cafeteria) and "team" to highlight its focus on teamwork and shared responsibility. 
 
 Whether it's coffee, tea, sugar, or creamer, CanTeam ensures fair usage and reimbursement among people sharing resources in communal spaces. 
 
